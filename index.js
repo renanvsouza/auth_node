@@ -7,10 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //DB Connection and Express Server
-mongoose.connect(process.env.DB_CONNECTION, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true
-})
+mongoose.connect(process.env.DB_CONNECTION)
     .then(() => app.listen(port, () => console.log('Listening on port:', port)))
     .catch(e => console.log(e));
 

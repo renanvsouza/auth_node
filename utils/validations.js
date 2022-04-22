@@ -18,7 +18,7 @@ const validateNewUser = async (req, res, next) => {
     try {
         const emailExists = await User.findOne({ email: req.body.email });
         const usernameExists = await User.findOne({ username: req.body.username });
-        
+
         if (emailExists || usernameExists) {
             res.status(400).send('Username or e-mail already in use.');
         } else {
@@ -29,4 +29,4 @@ const validateNewUser = async (req, res, next) => {
     }
 }
 
-module.exports = { validateNewUser };
+module.exports = validateNewUser;

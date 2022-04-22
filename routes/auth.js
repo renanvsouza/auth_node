@@ -33,15 +33,13 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email });
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
+        //If username and password are correct, send the authorization token on the response header
         if (!user || !isPasswordValid) {
             res.send('Incorrect e-mail or password');
         } else {
             const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-
             res.header('auth-token', token).send('Logged in');
         }
-
-
     } catch (e) {
         res.send(e);
     }
